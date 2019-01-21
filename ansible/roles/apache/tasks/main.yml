@@ -4,7 +4,7 @@
     name: '*'
     state: latest
 
-- name: ensure a list of packages installed
+- name: ensure the latest apache and apache tools are installed
   yum:
     name: "{{ packages }}"
     state: latest
