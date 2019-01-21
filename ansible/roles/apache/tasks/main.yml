@@ -1,0 +1,26 @@
+---
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
+- name: ensure a list of packages installed
+  yum:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+    - httpd
+    - httpd-tools
+
+- name: write the apache config file
+  template:
+    src: files/server-status.conf
+    dest: /etc/httpd/conf.d/server-status.conf
+  notify:
+  - restart apache
+
+- name: ensure apache is running
+  service:
+    name: httpd
+    state: started
