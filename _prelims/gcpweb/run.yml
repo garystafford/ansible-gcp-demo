@@ -1,0 +1,20 @@
+# ansible-playbook -i run.yml --extra-vars "run_option=create";
+---
+- name: Create GCP resources
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  become: yes
+  remote_user: root
+  vars_files:
+  - vars/main.yml
+
+  tasks:
+  - include: "tasks/create.yml"
+    when: ("{{ run_option }}" == "create")
+
+  - include: "tasks/delete.yml"
+    when: ("{{ run_option }}" == "delete")
+
+  # roles:
+  # - ..\apache

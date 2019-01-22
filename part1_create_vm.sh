@@ -8,7 +8,7 @@
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-demo-project'
 readonly ZONE='us-east1-b'
-readonly INSTANCE='ansible-instance'
+readonly INSTANCE='compute-instance'
 readonly SERVICE_ACCOUNT='437868209664-compute@developer.gserviceaccount.com'
 
 gcloud compute instances create $INSTANCE \
@@ -23,9 +23,9 @@ gcloud compute instances create $INSTANCE \
   --tags http-server \
   --image centos-7-v20190116 \
   --image-project centos-cloud \
-  --boot-disk-size 200GB \
+  --boot-disk-size 50GB \
   --boot-disk-type pd-standard \
-  --boot-disk-device-name $INSTANCE
+  --boot-disk-device-name compute-disk
 
 gcloud compute firewall-rules create default-allow-http \
   --project $PROJECT \

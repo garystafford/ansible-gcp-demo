@@ -20,6 +20,11 @@
   notify:
   - restart apache
 
+- name: install html document into DocumentRoot
+  template:
+    src: files/index.html
+    dest: /var/www/html/index.html
+
 - name: ensure apache is running
   service:
     name: httpd
