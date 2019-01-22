@@ -3,7 +3,7 @@
 # author: Gary A. Stafford
 # site: https://programmaticponderings.com
 # license: MIT License
-# purpose: Create /etc/ansible/hosts file with GCP VM
+# purpose: Create a local hosts file with GCE VM
 
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-demo-project'
@@ -15,7 +15,10 @@ readonly EXTERNAL_IP=$(gcloud compute instances list \
     --project $PROJECT \
   | awk 'NR==2 {print $5}')
 
+# Populate hosts file with new GCE VM IP and access info
 sh -c "echo '[webservers]' > ansible/inventories/hosts"
 sh -c "echo '${EXTERNAL_IP} ansible_user=${USER} ansible_ssh_private_key_file=${SSH_KEY}' >> ansible/inventories/hosts"
 cat ansible/hosts
-ansible webservers -m ping
+
+# Should ask to continue with new host first time we connect
+yes | ansible webservers -m ping

@@ -3,7 +3,7 @@
 # author: Gary A. Stafford
 # site: https://programmaticponderings.com
 # license: MIT License
-# purpose: Create GCP VM instance for Ansible
+# purpose: Create GCP VM instance and associated resources
 
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-demo-project'
@@ -11,7 +11,8 @@ readonly ZONE='us-east1-b'
 readonly INSTANCE='compute-instance'
 readonly SERVICE_ACCOUNT='437868209664-compute@developer.gserviceaccount.com'
 
-gcloud compute instances create $INSTANCE \
+# Create GCE VM with disk storage
+time gcloud compute instances create $INSTANCE \
   --project $PROJECT \
   --zone $ZONE \
   --machine-type n1-standard-1 \
@@ -27,7 +28,8 @@ gcloud compute instances create $INSTANCE \
   --boot-disk-type pd-standard \
   --boot-disk-device-name compute-disk
 
-gcloud compute firewall-rules create allow-http \
+# Create firewall rule to allow ingress traffic from port 80
+time gcloud compute firewall-rules create allow-http \
   --project $PROJECT \
   --direction INGRESS \
   --priority 1000 \

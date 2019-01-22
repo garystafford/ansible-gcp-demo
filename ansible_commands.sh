@@ -11,7 +11,7 @@ gcloud compute images list
 
 vi ~/.ansible/ansible.cfg
 
-ansible-config view --config=anisble.cfg
+ansible-config view --config=ansible.cfg
 
 cat ~/.ssh/id_rsa.pub| pbcopy
 
