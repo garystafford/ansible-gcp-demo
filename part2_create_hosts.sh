@@ -15,7 +15,7 @@ readonly EXTERNAL_IP=$(gcloud compute instances list \
     --project $PROJECT \
   | awk 'NR==2 {print $5}')
 
-sh -c "echo '[webservers]' > ansible/hosts"
-sh -c "echo '${EXTERNAL_IP} ansible_user=${USER} ansible_ssh_private_key_file=${SSH_KEY}' >> ansible/hosts"
+sh -c "echo '[webservers]' > ansible/inventories/hosts"
+sh -c "echo '${EXTERNAL_IP} ansible_user=${USER} ansible_ssh_private_key_file=${SSH_KEY}' >> ansible/inventories/hosts"
 cat ansible/hosts
 ansible webservers -m ping
