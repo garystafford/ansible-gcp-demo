@@ -19,7 +19,8 @@ ansible all -m ping
 ansible webservers -m ping
 ansible all -a "/bin/echo hello"
 
-ansible-inventory --list -i inventories/gcp.yml
+ansible-inventory --list
+ansible-inventory --list --inventory-file ansible/inventories/gcp.yml
 
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
 ansible-playbook ansible/webservers.yml --check

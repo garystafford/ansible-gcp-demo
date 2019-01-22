@@ -1,0 +1,2 @@
+[webservers]
+34.73.171.5 ansible_user=garystafford ansible_ssh_private_key_file=~/.ssh/id_rsa
