@@ -1,7 +1,5 @@
 # ansible-inventory --list -i hosts.gcp.yml
 plugin: gcp_compute
-zones:
-  - us-east1-b
 projects:
   - ansible-demo-project
 filters:
