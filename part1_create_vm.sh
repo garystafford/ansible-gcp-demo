@@ -23,11 +23,11 @@ gcloud compute instances create $INSTANCE \
   --tags http-server \
   --image centos-7-v20190116 \
   --image-project centos-cloud \
-  --boot-disk-size 50GB \
+  --boot-disk-size 200GB \
   --boot-disk-type pd-standard \
   --boot-disk-device-name compute-disk
 
-gcloud compute firewall-rules create default-allow-http \
+gcloud compute firewall-rules create allow-http \
   --project $PROJECT \
   --direction INGRESS \
   --priority 1000 \

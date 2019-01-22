@@ -15,7 +15,7 @@
   - name: create a disk
     gcp_compute_disk:
       name: 'compute-disk'
-      size_gb: 50
+      size_gb: 200
       source_image: 'projects/centos-cloud/global/images/centos-7-v20190116'
       zone: "{{ zone }}"
       project: "{{ gcp_project }}"
