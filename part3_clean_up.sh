@@ -14,5 +14,5 @@ readonly INSTANCE='compute-instance'
 yes | gcloud compute instances delete $INSTANCE \
   --project $PROJECT --zone $ZONE
 
-yes | gcloud compute firewall-rules delete default-allow-http \
+yes | gcloud compute firewall-rules delete allow-http \
   --project $PROJECT

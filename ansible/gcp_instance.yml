@@ -52,7 +52,7 @@
   - name: create a firewall
     gcp_compute_firewall:
       name: 'compute-firewall'
-      network: "projects/{{ gcp_project }}/global/networks/ansible-network-instance"
+      network: "projects/{{ gcp_project }}/global/networks/{{ network.name }}"
       allowed:
       - ip_protocol: tcp
         ports:
@@ -97,12 +97,12 @@
         - 'apache-http-server'
     register: instance
 
-  # - name: wait for ssh to come up
-  #   wait_for:
-  #     host: "{{ address }}"
-  #     port: 22
-  #     delay: 5
-  #     timeout: 20
+  - name: wait for ssh to come up
+    wait_for:
+      host: "{{ address.address }}"
+      port: 22
+      delay: 10
+      timeout: 60
 
   - name: add host to groupname
     add_host:
