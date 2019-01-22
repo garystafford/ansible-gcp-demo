@@ -1,5 +1,5 @@
-Role Name
-=========
+Apache HTTP Server Role
+=======================
 
 A brief description of the role goes here.
 
