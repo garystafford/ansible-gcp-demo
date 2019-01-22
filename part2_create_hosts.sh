@@ -11,7 +11,7 @@ readonly ZONE='us-east1-b'
 readonly USER='garystafford'
 readonly SSH_KEY='~/.ssh/id_rsa'
 readonly EXTERNAL_IP=$(gcloud compute instances list \
-    --filter="name=ansible-instance" \
+    --filter="name=compute-instance" \
     --project $PROJECT \
   | awk 'NR==2 {print $5}')
 
