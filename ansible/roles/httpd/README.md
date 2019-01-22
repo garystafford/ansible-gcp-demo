@@ -1,5 +1,5 @@
-Apache HTTP Server Role
-=======================
+Apache HTTP Server (httpd) Role
+===============================
 
 A brief description of the role goes here.
 

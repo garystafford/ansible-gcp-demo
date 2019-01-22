@@ -22,7 +22,7 @@
 
 - name: install html document into DocumentRoot
   template:
-    src: files/index.html
+    src: templates/index.html.j2
     dest: /var/www/html/index.html
 
 - name: ensure apache is running

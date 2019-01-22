@@ -7,8 +7,8 @@
     gcp_project: ansible-demo-project
     gcp_cred_kind: serviceaccount
     gcp_cred_file: ~/Documents/Personal/ansible-demo-project-f4cf59b1413b.json
-    zone: "us-east1-b"
-    region: "us-east1"
+    zone: 'us-east1-b'
+    region: 'us-east1'
 
   tasks:
   - name: delete an instance

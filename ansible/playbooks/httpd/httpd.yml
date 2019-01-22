@@ -1,0 +1,37 @@
+---
+- name: Install Apache HTTP Server
+  hosts: webservers
+  become: yes
+  remote_user: root
+
+  tasks:
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+
+  - name: ensure the latest apache and apache tools are installed
+    yum:
+      name: "{{ packages }}"
+      state: latest
+    vars:
+      packages:
+      - httpd
+      - httpd-tools
+
+  - name: write the apache config file
+    template:
+      src: server-status.conf
+      dest: /etc/httpd/conf.d/server-status.conf
+    notify:
+    - restart apache
+
+  - name: install html document into DocumentRoot
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index.html
+
+  - name: ensure apache is running
+    service:
+      name: httpd
+      state: started
