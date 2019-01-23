@@ -26,9 +26,9 @@ ansible-inventory --list --inventory-file ansible/inventories/gcp.yml
 ansible-playbook ansible/webservers.yml --check
 ansible-playbook ansible/sites.yml --limit 'webservers'
 ansible-playbook ansible/sites.yml --limit 'webservers' --check
-
-ansible-playbook ansible/gcp_instance.yml
-ansible-playbook ansible/gcp_instance_delete.yml
+ansible-playbook ansible/httpd/httpd-playbook.yml
+ansible-playbook ansible/gcpweb_create.yml --check
+ansible-playbook ansible/gcpweb_delete.yml
 
 ansible-galaxy init apache
 ansible-galaxy init gcpweb

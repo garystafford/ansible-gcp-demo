@@ -10,6 +10,7 @@
     gcp_cred_file: ~/Documents/Personal/ansible-demo-project-f4cf59b1413b.json
     zone: 'us-east1-b'
     region: 'us-east1'
+    remote_user: 'garystafford'
 
   tasks:
   - name: create a disk
@@ -104,7 +105,7 @@
       delay: 10
       timeout: 60
 
-  - name: add host to groupname
+  - name: add host to host group
     add_host:
       hostname: "{{ address.address }}"
       groups: new_instances
@@ -112,7 +113,7 @@
 - name: Manage new instances
   hosts: new_instances
   become: yes
-  remote_user: garystafford
+  remote_user: "{{ remote_user }}"
 
   roles:
-    - httpd
+  - httpd
