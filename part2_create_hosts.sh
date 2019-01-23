@@ -6,10 +6,10 @@
 # purpose: Create a local hosts file with GCE VM
 
 # Constants - CHANGE ME!
-readonly PROJECT='ansible-demo-project'
+readonly PROJECT='ansible-gce-demo'
 readonly ZONE='us-east1-b'
-readonly USER='garystafford'
-readonly SSH_KEY='~/.ssh/id_rsa'
+readonly USER='ansible'
+readonly SSH_KEY='~/.ssh/ansible'
 readonly EXTERNAL_IP=$(gcloud compute instances list \
     --filter="name=compute-instance" \
     --project $PROJECT \

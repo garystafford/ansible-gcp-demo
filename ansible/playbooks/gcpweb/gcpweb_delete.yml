@@ -4,9 +4,9 @@
   gather_facts: no
   connection: local
   vars:
-    gcp_project: ansible-demo-project
+    gcp_project: ansible-gce-demo
     gcp_cred_kind: serviceaccount
-    gcp_cred_file: ~/Documents/Personal/ansible-demo-project-f4cf59b1413b.json
+    gcp_cred_file: ~/Documents/Personal/gcp_creds/ansible-gce-demo-a0dbb4ac2ff7.json
     zone: us-east1-b
     region: us-east1
 

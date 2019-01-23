@@ -6,7 +6,7 @@
 # purpose: Delete GCP VM instance, IP address, and firewall rule
 
 # Constants - CHANGE ME!
-readonly PROJECT='ansible-demo-project'
+readonly PROJECT='ansible-gce-demo'
 readonly ZONE='us-east1-b'
 readonly INSTANCE='compute-instance'
 
@@ -17,4 +17,4 @@ time yes | gcloud compute firewall-rules delete allow-http \
   --project $PROJECT
 
 # Clean up for next workflow
-sh -c "echo '' > ansible/inventories/hosts"
+sh -c "echo 'localhost' > ansible/inventories/hosts"

@@ -1,6 +1,6 @@
 plugin: gcp_compute
 projects:
-- ansible-demo-project
+- ansible-gce-demo
 filters:
 auth_kind: serviceaccount
-service_account_file: ~/Documents/Personal/ansible-demo-project-f4cf59b1413b.json
+service_account_file: ~/Documents/Personal/gcp_creds/ansible-gce-demo-a0dbb4ac2ff7.json

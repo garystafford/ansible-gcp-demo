@@ -29,15 +29,15 @@
 
   - name: deploy php document to DocumentRoot
     template:
-      src: files/info.php
+      src: info.php
       dest: /var/www/html/info.php
 
   - name: deploy html document to DocumentRoot
     template:
       src: index.html.j2
       dest: /var/www/html/index.html
-      vars:
-        greeting: 'Hello Anisble on GCP!'
+    vars:
+      greeting: 'Hello Anisble on GCP!'
 
   - name: ensure apache is running
     service:
