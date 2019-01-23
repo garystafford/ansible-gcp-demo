@@ -16,3 +16,6 @@ time yes | gcloud compute instances delete $INSTANCE \
 
 time yes | gcloud compute firewall-rules delete allow-http \
   --project $PROJECT
+
+# Clean up for next workflow
+rm ansible/inventories/hosts

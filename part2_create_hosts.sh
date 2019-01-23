@@ -18,7 +18,7 @@ readonly EXTERNAL_IP=$(gcloud compute instances list \
 # Populate hosts file with new GCE VM IP and access info
 sh -c "echo '[webservers]' > ansible/inventories/hosts"
 sh -c "echo '${EXTERNAL_IP} ansible_user=${USER} ansible_ssh_private_key_file=${SSH_KEY}' >> ansible/inventories/hosts"
-cat ansible/hosts
+cat ansible/inventories/hosts
 
 # Should ask to continue with new host first time we connect
 yes | ansible webservers -m ping

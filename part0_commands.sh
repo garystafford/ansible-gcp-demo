@@ -21,16 +21,16 @@ ansible all -a "/bin/echo hello"
 
 ansible-inventory --list
 ansible-inventory --list --inventory-file ansible/inventories/gcp.yml
+ansible-inventory --graph -i ansible/inventories/gcp.yml
 
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
 ansible-playbook ansible/webservers.yml --check
 ansible-playbook ansible/sites.yml --limit 'webservers'
 ansible-playbook ansible/sites.yml --limit 'webservers' --check
 ansible-playbook ansible/httpd/httpd-playbook.yml
-ansible-playbook ansible/gcpweb_create.yml --check
-ansible-playbook ansible/gcpweb_delete.yml
-
-ansible-galaxy init apache
+ansible-playbook ansible/playbooks/gcpweb/gcpweb_create.yml
+ansible-playbook ansible/playbooks/gcpweb/gcpweb_delete.yml
+ansible-galaxy init httpd
 ansible-galaxy init gcpweb
 
 http://34.73.22.69/server-status

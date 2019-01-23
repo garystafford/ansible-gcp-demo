@@ -1,7 +1,6 @@
-# ansible-inventory --list -i hosts.gcp.yml
 plugin: gcp_compute
 projects:
-  - ansible-demo-project
+- ansible-demo-project
 filters:
 auth_kind: serviceaccount
 service_account_file: ~/Documents/Personal/ansible-demo-project-f4cf59b1413b.json
