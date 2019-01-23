@@ -14,7 +14,7 @@
     - httpd-tools
     - php
 
-- name: deploy the apache config file
+- name: deploy httpd config file
   template:
     src: files/server-status.conf
     dest: /etc/httpd/conf.d/server-status.conf

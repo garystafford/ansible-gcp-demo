@@ -1,4 +1,3 @@
-# https://docs.ansible.com/ansible/latest/modules/list_of_cloud_modules.html#google
 ---
 - name: Create GCP resources
   hosts: localhost
@@ -8,8 +7,8 @@
     gcp_project: ansible-demo-project
     gcp_cred_kind: serviceaccount
     gcp_cred_file: ~/Documents/Personal/ansible-demo-project-f4cf59b1413b.json
-    zone: 'us-east1-b'
-    region: 'us-east1'
+    zone: us-east1-b
+    region: us-east1
 
   tasks:
   - name: create a disk
