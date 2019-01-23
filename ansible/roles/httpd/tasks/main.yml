@@ -4,7 +4,7 @@
     name: '*'
     state: latest
 
-- name: ensure the latest apache and apache tools are installed
+- name: ensure the latest list of packages are installed
   yum:
     name: "{{ packages }}"
     state: latest
@@ -14,19 +14,19 @@
     - httpd-tools
     - php
 
-- name: deploy httpd config file
+- name: deploy apache config file
   template:
     src: files/server-status.conf
     dest: /etc/httpd/conf.d/server-status.conf
   notify:
   - restart apache
 
-- name: deploy php document into DocumentRoot
+- name: deploy php document to DocumentRoot
   template:
     src: files/info.php
     dest: /var/www/html/info.php
 
-- name: deploy html document into DocumentRoot
+- name: deploy html document to DocumentRoot
   template:
     src: templates/index.html.j2
     dest: /var/www/html/index.html
