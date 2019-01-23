@@ -37,7 +37,7 @@
       state: present
     register: network
 
-  - name: create a address
+  - name: create an address
     gcp_compute_address:
       name: 'compute-address'
       region: "{{ region }}"
@@ -71,7 +71,7 @@
       state: present
     register: firewall
 
-  - name: create a instance
+  - name: create an instance
     gcp_compute_instance:
       state: present
       name: compute-instance

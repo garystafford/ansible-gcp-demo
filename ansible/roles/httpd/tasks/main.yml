@@ -12,15 +12,21 @@
     packages:
     - httpd
     - httpd-tools
+    - php
 
-- name: write the apache config file
+- name: deploy the apache config file
   template:
     src: files/server-status.conf
     dest: /etc/httpd/conf.d/server-status.conf
   notify:
   - restart apache
 
-- name: install html document into DocumentRoot
+- name: deploy php document into DocumentRoot
+  template:
+    src: files/info.php
+    dest: /var/www/html/info.php
+
+- name: deploy html document into DocumentRoot
   template:
     src: templates/index.html.j2
     dest: /var/www/html/index.html
