@@ -2,7 +2,6 @@
 - name: Install Apache HTTP Server
   hosts: webservers
   become: yes
-  remote_user: root
 
   tasks:
   - name: upgrade all packages

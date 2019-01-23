@@ -17,4 +17,4 @@ time yes | gcloud compute firewall-rules delete allow-http \
   --project $PROJECT
 
 # Clean up for next workflow
-sh -c "echo 'localhost' > ansible/inventories/hosts"
+sh -c "echo '' > ansible/inventories/hosts"

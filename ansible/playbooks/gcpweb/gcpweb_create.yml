@@ -111,6 +111,5 @@
 - name: Manage new instances
   hosts: new_instances
   become: yes
-  remote_user: ansible
   roles:
   - httpd

@@ -1,6 +1,5 @@
 - hosts: webservers
   become: yes
-  remote_user: root
   vars_files:
   - group_vars/webservers.yml
 
