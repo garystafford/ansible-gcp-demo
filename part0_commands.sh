@@ -26,10 +26,13 @@ ansible-inventory --graph -i ansible/inventories/gcp.yml
 
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
 time ansible-playbook ansible/playbooks/httpd/httpd_playbook.yml --check
+
 ansible-playbook ansible/webservers.yml --check
 ansible-playbook ansible/sites.yml --limit 'webservers' --check
+
 time ansible-playbook ansible/playbooks/gcpweb/gcpweb_create.yml
 time ansible-playbook ansible/playbooks/gcpweb/gcpweb_delete.yml
+
 ansible-galaxy init httpd
 ansible-galaxy init gcpweb
 
