@@ -1,0 +1,8 @@
+---
+gcp_project: ansible-gce-demo
+gcp_cred_kind: serviceaccount
+gcp_cred_file: '~/Documents/Personal/gcp_creds/ansible-gce-demo-a0dbb4ac2ff7.json'
+zone: us-east1-b
+region: us-east1
+scopes:
+- https://www.googleapis.com/auth/compute

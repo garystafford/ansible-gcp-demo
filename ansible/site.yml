@@ -1,2 +1,4 @@
----
-- import_playbook: webservers.yml
+#!/usr/bin/env ansible-playbook
+
+- import_playbook: playbooks/10_webserver_infra.yml
+- import_playbook: playbooks/20_webserver_config.yml

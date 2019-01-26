@@ -1,0 +1,7 @@
+- name: Create GCP webserver resources
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  roles:
+  - role: gcpweb

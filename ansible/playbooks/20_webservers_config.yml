@@ -1,0 +1,6 @@
+- name: Configure GCP webservers
+  hosts: webservers
+  become: yes
+
+  roles:
+  - role: httpd

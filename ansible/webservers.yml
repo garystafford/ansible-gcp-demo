@@ -1,7 +1,0 @@
-- hosts: webservers
-  become: yes
-  vars_files:
-  - group_vars/webservers.yml
-
-  roles:
-  - httpd

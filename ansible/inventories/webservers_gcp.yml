@@ -1,6 +1,10 @@
 plugin: gcp_compute
 projects:
-- ansible-gce-demo
-filters:
+  - ansible-gce-demo
+filters: []
+groups:
+  webservers: "'webserver' in name"
+hostnames:
+  - name
 auth_kind: serviceaccount
 service_account_file: ~/Documents/Personal/gcp_creds/ansible-gce-demo-a0dbb4ac2ff7.json
