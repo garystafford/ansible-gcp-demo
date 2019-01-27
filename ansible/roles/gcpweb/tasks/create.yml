@@ -12,7 +12,7 @@
     name: ansible-subnet
     region: "{{ region }}"
     network: "{{ network }}"
-    ip_cidr_range: 172.16.0.0/28
+    ip_cidr_range: "{{ ip_cidr_range }}"
     project: "{{ gcp_project }}"
     state: present
   register: subnet
@@ -33,7 +33,7 @@
 
 - name: create an address
   gcp_compute_address:
-    name: webserver1-address
+    name: "{{ instance_name }}"
     region: "{{ region }}"
     project: "{{ gcp_project }}"
     state: present
@@ -41,8 +41,8 @@
 
 - name: create a disk
   gcp_compute_disk:
-    name: webserver1-disk
-    size_gb: 200
+    name: "{{ instance_name }}"
+    size_gb: "{{ size_gb }}"
     source_image: 'projects/centos-cloud/global/images/centos-7-v20190116'
     zone: "{{ zone }}"
     project: "{{ gcp_project }}"
@@ -52,8 +52,8 @@
 - name: create an instance
   gcp_compute_instance:
     state: present
-    name: webserver1
-    machine_type: n1-standard-1
+    name: "{{ instance_name }}"
+    machine_type: "{{ machine_type }}"
     disks:
     - auto_delete: true
       boot: true

@@ -1,18 +1,14 @@
 ---
-- name:  a instance facts
-  debug:
-    msg: "{{ hostvars[inventory_hostname] }}"
-    msg: "{{ hostvars[inventory_hostname] }}"
 - name: delete an instance
   gcp_compute_instance:
-    name: webserver1
+    name: "{{ instance_name }}"
     zone: "{{ zone }}"
     project: "{{ gcp_project }}"
     state: absent
 
 - name: delete an address
   gcp_compute_address:
-    name: webserver1-address
+    name: "{{ instance_name }}"
     region: "{{ region }}"
     project: "{{ gcp_project }}"
     state: absent
@@ -27,15 +23,17 @@
   gcp_compute_network:
     name: ansible-network
     project: "{{ gcp_project }}"
-    state: present
   register: network
+
+# - debug:
+#     var: network
 
 - name: delete a subnetwork
   gcp_compute_subnetwork:
     name: ansible-subnet
     region: "{{ region }}"
     network: "{{ network }}"
-    ip_cidr_range: 172.16.0.0/28
+    ip_cidr_range: "{{ ip_cidr_range }}"
     project: "{{ gcp_project }}"
     state: absent
 
