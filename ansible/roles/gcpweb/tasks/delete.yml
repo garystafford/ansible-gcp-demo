@@ -1,4 +1,8 @@
 ---
+- name:  a instance facts
+  debug:
+    msg: "{{ hostvars[inventory_hostname] }}"
+    msg: "{{ hostvars[inventory_hostname] }}"
 - name: delete an instance
   gcp_compute_instance:
     name: webserver1
@@ -16,6 +20,22 @@
 - name: delete a firewall
   gcp_compute_firewall:
     name: ansible-firewall
+    project: "{{ gcp_project }}"
+    state: absent
+
+- name: register the existing network
+  gcp_compute_network:
+    name: ansible-network
+    project: "{{ gcp_project }}"
+    state: present
+  register: network
+
+- name: delete a subnetwork
+  gcp_compute_subnetwork:
+    name: ansible-subnet
+    region: "{{ region }}"
+    network: "{{ network }}"
+    ip_cidr_range: 172.16.0.0/28
     project: "{{ gcp_project }}"
     state: absent
 

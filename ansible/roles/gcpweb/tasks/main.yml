@@ -1,8 +1,4 @@
 ---
-- import_tasks: get_facts.yml
-  tags:
-    - facts
-
 - import_tasks: create.yml
   tags:
     - create

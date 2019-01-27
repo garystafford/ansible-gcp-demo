@@ -27,17 +27,14 @@ ansible-inventory --graph -i ansible/inventories/gcp.yml
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
 time ansible-playbook ansible/playbooks/httpd/httpd_playbook.yml --check
 time ansible-playbook \
-  -i ansible/inventories/gcp.yml \
-  ansible/playbooks/httpd/httpd_playbook.yml --check
+  -i inventories/gcp.yml \
+  roles/httpd/httpd_playbook.yml --check
 
 ansible-playbook ansible/webservers.yml --check
 ansible-playbook ansible/sites.yml --limit 'webservers' --check
 
 time ansible-playbook ansible/playbooks/gcpweb/gcpweb_create.yml
 time ansible-playbook ansible/playbooks/gcpweb/gcpweb_delete.yml
-time ansible-playbook \
-  -i ansible/inventories/gcp.yml \
-  ansible/playbooks/gcpweb/gcpweb_create.yml --check
 
 ansible-galaxy init httpd
 ansible-galaxy init gcpweb
@@ -52,13 +49,9 @@ ansible webservers -a "ls -al /var/www/html"
 
 time ansible-playbook -t create playbooks/10_webservers_infra.yml
 
-time ansible-playbook -t get_facts \
-  -i inventories/webservers_gcp.yml \
-  playbooks/10_webservers_infra.yml --check
+ansible webservers -i inventories/webservers_gcp.yml -m setup
 
-ansible webservers -m setup
-
-ansible-inventory --list --export -i inventories/webservers_gcp.yml
+ansible-inventory --graph -i inventories/webservers_gcp.yml
 
 time ansible-playbook \
   -i inventories/webservers_gcp.yml \

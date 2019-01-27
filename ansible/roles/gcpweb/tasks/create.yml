@@ -23,8 +23,7 @@
     network: "projects/{{ gcp_project }}/global/networks/{{ network.name }}"
     allowed:
     - ip_protocol: tcp
-      ports:
-      - ['80','22']
+      ports: ['80','22']
     target_tags:
     - apache-http-server
     source_ranges: ['0.0.0.0/0']
