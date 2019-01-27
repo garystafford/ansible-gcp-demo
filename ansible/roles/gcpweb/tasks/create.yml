@@ -25,7 +25,7 @@
     - ip_protocol: tcp
       ports: ['80','22']
     target_tags:
-    - apache-http-server
+      - apache-http-server
     source_ranges: ['0.0.0.0/0']
     project: "{{ gcp_project }}"
     state: present
@@ -69,6 +69,6 @@
     project: "{{ gcp_project }}"
     tags:
       items:
-      - apache-http-server
-      - webserver
+        - apache-http-server
+        - webserver
   register: instance

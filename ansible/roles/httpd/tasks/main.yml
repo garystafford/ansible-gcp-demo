@@ -10,16 +10,16 @@
     state: latest
   vars:
     packages:
-    - httpd
-    - httpd-tools
-    - php
+      - httpd
+      - httpd-tools
+      - php
 
 - name: deploy apache config file
   template:
     src: files/server-status.conf
     dest: /etc/httpd/conf.d/server-status.conf
   notify:
-  - restart apache
+    - restart apache
 
 - name: deploy php document to DocumentRoot
   template:
