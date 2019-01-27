@@ -8,13 +8,9 @@
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-gce-demo'
 readonly ZONE='us-east1-b'
-readonly INSTANCE='web-1'
 
-time yes | gcloud compute instances delete $INSTANCE \
+time yes | gcloud compute instances delete web-1 \
   --project $PROJECT --zone $ZONE
 
 time yes | gcloud compute firewall-rules delete allow-http \
   --project $PROJECT
-
-# Clean up for next workflow
-sh -c "echo '' > ansible/inventories/hosts"

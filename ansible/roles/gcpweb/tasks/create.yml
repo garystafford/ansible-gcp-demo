@@ -70,4 +70,5 @@
     tags:
       items:
       - apache-http-server
+      - webserver
   register: instance
