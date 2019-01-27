@@ -28,7 +28,6 @@ ansible-inventory --graph -i ansible/inventories/gcp.yml
 
 ansible-playbook ansible/webservers.yml --check
 ansible-playbook ansible/sites.yml --limit 'webservers' --check
-
 time ansible-playbook ansible/playbooks/gcpweb/gcpweb_create.yml
 time ansible-playbook ansible/playbooks/gcpweb/gcpweb_delete.yml
 
@@ -54,8 +53,22 @@ ansible webservers -i inventories/webserver_gcp.yml -m setup
 
 ansible-inventory --graph -i inventories/webservers_gcp.yml
 
+# time ansible-playbook \
+#   --inventory "104.196.184.165," \
+#   playbooks/20_webserver_config.yml --check
+
 time ansible-playbook \
   -i inventories/webservers_gcp.yml \
   playbooks/20_webserver_config.yml --check
+
+ansible webservers \
+  -i inventories/webservers_gcp.yml \
+  -a "systemctl status httpd"
+
+ansible webservers \
+  -i inventories/webservers_gcp.yml \
+  -a "ls -al /var/www/html"
+
+ab -kc 100 -n 100000 http://104.196.184.165/server-status/
 
 time ansible-playbook -t delete playbooks/10_webserver_infra.yml --check

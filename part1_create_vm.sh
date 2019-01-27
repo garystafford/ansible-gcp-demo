@@ -29,8 +29,9 @@ time gcloud compute instances create web-1 \
   --boot-disk-device-name compute-disk
 
 # Create firewall rule to allow ingress traffic from port 80
-time gcloud compute firewall-rules create allow-http \
+time gcloud compute firewall-rules create default-allow-http \
   --project $PROJECT \
+  --description 'Allow HTTP from anywhere' \
   --direction INGRESS \
   --priority 1000 \
   --network default \

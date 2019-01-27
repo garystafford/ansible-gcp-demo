@@ -12,5 +12,5 @@ readonly ZONE='us-east1-b'
 time yes | gcloud compute instances delete web-1 \
   --project $PROJECT --zone $ZONE
 
-time yes | gcloud compute firewall-rules delete allow-http \
+time yes | gcloud compute firewall-rules delete default-allow-http \
   --project $PROJECT
