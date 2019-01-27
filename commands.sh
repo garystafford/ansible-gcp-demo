@@ -25,10 +25,6 @@ ansible-inventory --list --inventory-file ansible/inventories/gcp.yml
 ansible-inventory --graph -i ansible/inventories/gcp.yml
 
 # https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
-time ansible-playbook ansible/playbooks/httpd/httpd_playbook.yml --check
-time ansible-playbook \
-  -i inventories/gcp.yml \
-  roles/httpd/httpd_playbook.yml --check
 
 ansible-playbook ansible/webservers.yml --check
 ansible-playbook ansible/sites.yml --limit 'webservers' --check
@@ -47,13 +43,16 @@ ansible webservers -a "ab -kc 100 -n 500000 http://localhost/"
 ansible webservers -a "systemctl status httpd"
 ansible webservers -a "ls -al /var/www/html"
 
-time ansible-playbook -t create playbooks/10_webservers_infra.yml
+---
 
-ansible webservers -i inventories/webservers_gcp.yml -m setup
+time ansible-playbook -t create playbooks/10_webserver_infra.yml
+
+ansible webservers -i inventories/webserver_gcp.yml -m setup
 
 ansible-inventory --graph -i inventories/webservers_gcp.yml
 
 time ansible-playbook \
   -i inventories/webservers_gcp.yml \
-  playbooks/20_webservers_config.yml --check
-time ansible-playbook -t delete playbooks/10_webservers_infra.yml --check
+  playbooks/20_webserver_config.yml --check
+
+time ansible-playbook -t delete playbooks/10_webserver_infra.yml --check

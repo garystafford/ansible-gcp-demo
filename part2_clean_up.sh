@@ -8,7 +8,7 @@
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-gce-demo'
 readonly ZONE='us-east1-b'
-readonly INSTANCE='compute-instance'
+readonly INSTANCE='web-1'
 
 time yes | gcloud compute instances delete $INSTANCE \
   --project $PROJECT --zone $ZONE

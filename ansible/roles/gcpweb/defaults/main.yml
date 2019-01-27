@@ -2,7 +2,7 @@
 gcp_project: ansible-gce-demo
 zone: us-east1-b
 region: us-east1
-instance_name: webserver-1
+instance_name: web-1
 machine_type: n1-standard-1
 size_gb: 200
 ip_cidr_range: 172.16.0.0/28

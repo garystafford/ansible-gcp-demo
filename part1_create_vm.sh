@@ -7,9 +7,9 @@
 
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-gce-demo'
-readonly ZONE='us-east1-b'
-readonly INSTANCE='compute-instance'
 readonly SERVICE_ACCOUNT='ansible@ansible-gce-demo.iam.gserviceaccount.com'
+readonly ZONE='us-east1-b'
+readonly INSTANCE='web-1'
 
 # Create GCE VM with disk storage
 time gcloud compute instances create $INSTANCE \
