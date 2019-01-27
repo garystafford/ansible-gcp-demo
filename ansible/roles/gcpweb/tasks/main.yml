@@ -1,7 +1,12 @@
+---
+- import_tasks: get_facts.yml
+  tags:
+    - facts
+
 - import_tasks: create.yml
   tags:
-  - create
+    - create
 
 - import_tasks: delete.yml
   tags:
-  - delete
+    - delete

@@ -1,4 +1,7 @@
+---
 plugin: gcp_compute
+zones:
+ - us-east1-b
 projects:
   - ansible-gce-demo
 filters: []
@@ -6,5 +9,5 @@ groups:
   webservers: "'webserver' in name"
 hostnames:
   - name
+service_account_file: <path/to/your/service/account/key/file>.json
 auth_kind: serviceaccount
-service_account_file: ~/Documents/Personal/gcp_creds/ansible-gce-demo-a0dbb4ac2ff7.json

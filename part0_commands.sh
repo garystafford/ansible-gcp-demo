@@ -52,6 +52,10 @@ ansible webservers -a "ls -al /var/www/html"
 
 time ansible-playbook -t create playbooks/10_webservers_infra.yml
 
+time ansible-playbook -t get_facts \
+  -i inventories/webservers_gcp.yml \
+  playbooks/10_webservers_infra.yml --check
+
 ansible webservers -m setup
 
 ansible-inventory --list --export -i inventories/webservers_gcp.yml

@@ -1,0 +1,6 @@
+---
+- name:  a instance facts
+  debug:
+    var: hostvars[inventory_hostname]
+    verbosity: 4
+- set_fact: public_ip={{ ansible_nodename }}
