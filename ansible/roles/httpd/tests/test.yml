@@ -25,6 +25,13 @@
     retries: 2
     delay: 10
 
+  - name: Check if http://{{ inventory_hostname }} homepage contains 'Hello Anisble on GCP!' string
+    uri:
+      url: http://{{ inventory_hostname }}
+      return_content: true
+    register: response
+    failed_when: "'Hello Anisble on GCP!' not in response.content"
+
   - name: Check if http://{{ inventory_hostname }}/server-status contains 'Apache Server Status' string
     uri:
       url: http://{{ inventory_hostname }}/server-status

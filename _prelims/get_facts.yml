@@ -1,6 +1,0 @@
----
-- name:  a instance facts
-  debug:
-    var: hostvars[ansible_nodename]
-    verbosity: 4
-- set_fact: public_ip={{ ansible_nodename }}

@@ -4,7 +4,7 @@
 # site: https://programmaticponderings.com
 # license: MIT License
 # purpose: Source Ansible/GCP credentials
-# usage: source ./ansible_gcp_creds.sh
+# usage: source ./part0_ansible_gcp_creds.sh
 
 # Constants - CHANGE ME!
 export GCP_PROJECT='ansible-gce-demo'
