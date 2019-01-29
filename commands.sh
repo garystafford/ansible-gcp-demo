@@ -69,6 +69,10 @@ ansible webservers \
   -i inventories/webservers_gcp.yml \
   -a "ls -al /var/www/html"
 
+ansible webservers \
+  -i inventories/webservers_gcp.yml \
+  -a "date"
+
 ab -kc 100 -n 100000 http://104.196.184.165/server-status/
 
 time ansible-playbook -t delete playbooks/10_webserver_infra.yml --check

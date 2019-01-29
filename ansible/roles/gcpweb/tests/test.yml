@@ -1,5 +1,38 @@
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
-    - gcpweb
+- name: Test gcpweb Ansible role
+  hosts: webservers
+
+  tasks:
+  # - name: List ansible_facts
+  #   debug:
+  #     msg: "{{ ansible_facts }}"
+
+  - name: Check if timezone is UTC
+    debug:
+      msg: Timezone is UTC
+    failed_when: ansible_facts['date_time']['tz'] != 'UTC'
+
+  - name: Check if processor vCPUs count is 1
+    debug:
+      msg: Processor vCPUs count is 1
+    failed_when: ansible_facts['processor_vcpus'] != 1
+
+  - name: Check if distribution is CentOS
+    debug:
+      msg: Distribution is CentOS
+    failed_when: ansible_facts['distribution'] != 'CentOS'
+
+  - name: Check if distribution major version is 7
+    debug:
+      msg: Distribution major version is 7
+    failed_when: ansible_facts['distribution_major_version'] != '7'
+
+  - name: Check if hostname contains 'web-'
+    debug:
+      msg: Hostname contains 'web-'
+    failed_when: "'web-' not in ansible_facts['hostname']"
+
+  # - name: Check if hostname is {{ hostname }}
+  #   command: /bin/hostnamectl --static
+  #   register: output
+  #   failed_when: "'web-' not in output.stdout"

@@ -1,25 +1,33 @@
 ---
-- name: Test https role
+- name: Test httpd Ansible role
   hosts: webservers
   gather_facts: no
   become: yes
 
-- hosts: all
+  vars:
+    hostname: "{{ hostvars[inventory_hostname].name }}"
+
   tasks:
-  - name: Check file exists example
+  - name: Check if file 'index.html' exists on server
     stat:
       path: /var/www/html/index.html
-    register: file_details
 
-  - debug:
-      msg: 'The file or directory exists'
-    when: file_details.stat.exists
+  - name: Check if file 'info.php' exists on server
+    stat:
+      path: /var/www/html/info.php
 
-  - name: 'wait for website to come up'
+  - name: Check if http://{{ inventory_hostname }} homepage is accessible
     uri:
-        url: 'http://localhost'
-        status_code: 200
+      url: http://{{ inventory_hostname }}
+      status_code: 200
     register: result
     until: result.status == 200
-    retries: 90
+    retries: 2
     delay: 10
+
+  - name: Check if http://{{ inventory_hostname }}/server-status contains 'Apache Server Status' string
+    uri:
+      url: http://{{ inventory_hostname }}/server-status
+      return_content: true
+    register: response
+    failed_when: "'Apache Server Status' not in response.content"
