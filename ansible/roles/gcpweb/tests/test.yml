@@ -1,6 +1,7 @@
 ---
 - name: Test gcpweb Ansible role
   hosts: webservers
+  gather_facts: yes
 
   tasks:
   # - name: List ansible_facts
