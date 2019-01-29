@@ -3,26 +3,26 @@
   gcp_compute_instance:
     name: "{{ instance_name }}"
     zone: "{{ zone }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: absent
 
 - name: delete an address
   gcp_compute_address:
     name: "{{ instance_name }}"
     region: "{{ region }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: absent
 
 - name: delete a firewall
   gcp_compute_firewall:
     name: ansible-firewall
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: absent
 
 - name: register the existing network
   gcp_compute_network:
     name: ansible-network
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
   register: network
 
 # - debug:
@@ -34,11 +34,11 @@
     region: "{{ region }}"
     network: "{{ network }}"
     ip_cidr_range: "{{ ip_cidr_range }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: absent
 
 - name: delete a network
   gcp_compute_network:
     name: ansible-network
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: absent

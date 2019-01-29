@@ -1,5 +1,25 @@
 ---
-- hosts: localhost
-  remote_user: root
-  roles:
-    - httpd
+- name: Test https role
+  hosts: webservers
+  gather_facts: no
+  become: yes
+
+- hosts: all
+  tasks:
+  - name: Check file exists example
+    stat:
+      path: /var/www/html/index.html
+    register: file_details
+
+  - debug:
+      msg: 'The file or directory exists'
+    when: file_details.stat.exists
+
+  - name: 'wait for website to come up'
+    uri:
+        url: 'http://localhost'
+        status_code: 200
+    register: result
+    until: result.status == 200
+    retries: 90
+    delay: 10

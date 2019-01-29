@@ -4,6 +4,7 @@
 # site: https://programmaticponderings.com
 # license: MIT License
 # purpose: Delete GCP VM instance, IP address, and firewall rule
+# usage: sh ./part2_clean_up.sh
 
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-gce-demo'

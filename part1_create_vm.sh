@@ -4,6 +4,7 @@
 # site: https://programmaticponderings.com
 # license: MIT License
 # purpose: Create GCP VM instance and associated resources
+# usage: sh ./part1_create_vm.sh
 
 # Constants - CHANGE ME!
 readonly PROJECT='ansible-gce-demo'

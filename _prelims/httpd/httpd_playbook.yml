@@ -3,6 +3,9 @@
   hosts: webservers
   become: yes
 
+  vars:
+    greeting: 'Hello Anisble on GCP!'
+
   tasks:
   - name: upgrade all packages
     yum:
@@ -15,16 +18,16 @@
       state: latest
     vars:
       packages:
-      - httpd
-      - httpd-tools
-      - php
+        - httpd
+        - httpd-tools
+        - php
 
   - name: deploy apache config file
     template:
       src: server-status.conf
       dest: /etc/httpd/conf.d/server-status.conf
     notify:
-    - restart apache
+      - restart apache
 
   - name: deploy php document to DocumentRoot
     template:
@@ -36,7 +39,7 @@
       src: index.html.j2
       dest: /var/www/html/index.html
     vars:
-      greeting: 'Hello Anisble on GCP!'
+      greeting: "{{ gretting }}"
 
   - name: ensure apache is running
     service:

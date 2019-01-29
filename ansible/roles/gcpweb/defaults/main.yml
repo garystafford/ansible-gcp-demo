@@ -1,5 +1,4 @@
 ---
-gcp_project: ansible-gce-demo
 zone: us-east1-b
 region: us-east1
 instance_name: web-1

@@ -3,7 +3,7 @@
   gcp_compute_network:
     name: ansible-network
     auto_create_subnetworks: yes
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present
   register: network
 
@@ -13,21 +13,21 @@
     region: "{{ region }}"
     network: "{{ network }}"
     ip_cidr_range: "{{ ip_cidr_range }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present
   register: subnet
 
 - name: create a firewall
   gcp_compute_firewall:
     name: ansible-firewall
-    network: "projects/{{ gcp_project }}/global/networks/{{ network.name }}"
+    network: "projects/{{ lookup('env','GCP_PROJECT') }}/global/networks/{{ network.name }}"
     allowed:
     - ip_protocol: tcp
       ports: ['80','22']
     target_tags:
       - apache-http-server
     source_ranges: ['0.0.0.0/0']
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present
   register: firewall
 
@@ -35,7 +35,7 @@
   gcp_compute_address:
     name: "{{ instance_name }}"
     region: "{{ region }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present
   register: address
 
@@ -45,7 +45,7 @@
     size_gb: "{{ size_gb }}"
     source_image: 'projects/centos-cloud/global/images/centos-7-v20190116'
     zone: "{{ zone }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present
   register: disk
 
@@ -66,7 +66,7 @@
         nat_ip: "{{ address }}"
         type: ONE_TO_ONE_NAT
     zone: "{{ zone }}"
-    project: "{{ gcp_project }}"
+    project: "{{ lookup('env','GCP_PROJECT') }}"
     tags:
       items:
         - apache-http-server
