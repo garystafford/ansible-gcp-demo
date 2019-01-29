@@ -4,7 +4,7 @@
   gather_facts: yes
 
   tasks:
-  # - name: List ansible_facts
+  # - name: List all ansible facts
   #   debug:
   #     msg: "{{ ansible_facts }}"
 
